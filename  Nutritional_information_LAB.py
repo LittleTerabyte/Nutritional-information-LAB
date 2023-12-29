@@ -1,6 +1,9 @@
 class FoodItem:
-    # TODO: Define constructor with parameters to initialize instance 
-    #       attributes (name, fat, carbs, protein)
+    def __init__(self, name = None, fat = 0.0, carbs = 0.0, protein = 0.0):
+        self.name = name
+        self.fat = fat
+        self.carbs = carbs
+        self.protein = protein
        
     def get_calories(self, num_servings):
         # Calorie formula
@@ -8,31 +11,39 @@ class FoodItem:
         return calories
        
     def print_info(self):
-        print('Nutritional information per serving of {}:'.format(self.name))
-        print('   Fat: {:.2f} g'.format(self.fat))
-        print('   Carbohydrates: {:.2f} g'.format(self.carbs))
-        print('   Protein: {:.2f} g'.format(self.protein))
+        print(f'Nutritional information per serving of {self.name}:')
+        print(f'   Fat: {self.fat:.2f} g')
+        print(f'   Carbohydrates: {self.carbs:.2f} g')
+        print(f'   Protein: {self.protein:.2f} g')
+
+def page_brake():
+    print()
+    print("=" * 50)
+    print()
 
 if __name__ == "__main__":
     
+    page_brake()
+    # Shows a blank food item
     food_item1 = FoodItem()
    
-    item_name = input()
-    amount_fat = float(input())
-    amount_carbs = float(input())
-    amount_protein = float(input())
+    item_name = input("Enter food item name:\n").lower()
+    amount_fat = float(input("Enter amount of fat (in grams):\n"))
+    amount_carbs = float(input("Enter amount of carbohydrates (in grams):\n"))
+    amount_protein = float(input("Enter amount of protein (in grams):\n"))
    
     food_item2 = FoodItem(item_name, amount_fat, amount_carbs, amount_protein)
+    # Creates a food item with the given information
       
-    num_servings = float(input())
+    num_servings = int(input("Enter number of servings:\n"))
+    page_brake()
       
     food_item1.print_info()
-    print('Number of calories for {:.2f} serving(s): {:.2f}'.format(num_servings, 
-                          food_item1.get_calories(num_servings)))
+    print(f'Number of calories for {num_servings} serving(s): {food_item1.get_calories(num_servings):.2f}')
                            
     print()
                            
     food_item2.print_info()
-    print('Number of calories for {:.2f} serving(s): {:.2f}'.format(num_servings, 
-                          food_item2.get_calories(num_servings)))
-    
+    print(f'Number of calories for {num_servings} serving(s): {food_item2.get_calories(num_servings):.2f}')
+    page_brake()
+    print("\nGoodbye\n")
